@@ -1,0 +1,25 @@
+---
+title: "Sentiment Analysis"
+output: html_notebook
+---
+
+What we get is a list of n articles with at least one of them as the one we want to label.
+With this layer we want verify if those articles contain the same subject and content.
+This way we can generate more labels if they are the same and filter articles out.
+
+
+
+Problems to tackle: 
+- No labels (only the original one)
+- Different formats ?
+
+First approach rule based.
+- x1 accuracy with original content
+- x1 accuracy with original title
+- x1 accuracy with original content and x2 accurarcy with orignal title
+- Same sentiment as original
+
+```{r Explore the data}
+```
+
+
