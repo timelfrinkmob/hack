@@ -173,15 +173,18 @@ $(document).ready(function () {
 
 <!-- rnb-text-begin -->
 <p>What we get is a list of n articles with at least one of them as the one we want to label. With this layer we want verify if those articles contain the same subject and content. This way we can generate more labels if they are the same and filter articles out.</p>
+<p>Dataset: Position: Source google/bing: Date of pub: Link: Title: Content: Labeled:</p>
 <p>Problems to tackle: - No labels (only the original one) - Different formats ?</p>
-<p>First approach rule based. - x1 accuracy with original content - x1 accuracy with original title - x1 accuracy with original content and x2 accurarcy with orignal title - Same sentiment as original</p>
+<p>First approach rule based. - Accuracy with original content - Accuracy with original title - Same sentiment as original</p>
+<p>Repeat those steps with the stemming, tokenized, remove stop words of dataset.</p>
+<p>Find a cutoff.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2VudGltZW50IEFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpXaGF0IHdlIGdldCBpcyBhIGxpc3Qgb2YgbiBhcnRpY2xlcyB3aXRoIGF0IGxlYXN0IG9uZSBvZiB0aGVtIGFzIHRoZSBvbmUgd2Ugd2FudCB0byBsYWJlbC4KV2l0aCB0aGlzIGxheWVyIHdlIHdhbnQgdmVyaWZ5IGlmIHRob3NlIGFydGljbGVzIGNvbnRhaW4gdGhlIHNhbWUgc3ViamVjdCBhbmQgY29udGVudC4KVGhpcyB3YXkgd2UgY2FuIGdlbmVyYXRlIG1vcmUgbGFiZWxzIGlmIHRoZXkgYXJlIHRoZSBzYW1lIGFuZCBmaWx0ZXIgYXJ0aWNsZXMgb3V0LgoKCgpQcm9ibGVtcyB0byB0YWNrbGU6IAotIE5vIGxhYmVscyAob25seSB0aGUgb3JpZ2luYWwgb25lKQotIERpZmZlcmVudCBmb3JtYXRzID8KCkZpcnN0IGFwcHJvYWNoIHJ1bGUgYmFzZWQuCi0geDEgYWNjdXJhY3kgd2l0aCBvcmlnaW5hbCBjb250ZW50Ci0geDEgYWNjdXJhY3kgd2l0aCBvcmlnaW5hbCB0aXRsZQotIHgxIGFjY3VyYWN5IHdpdGggb3JpZ2luYWwgY29udGVudCBhbmQgeDIgYWNjdXJhcmN5IHdpdGggb3JpZ25hbCB0aXRsZQotIFNhbWUgc2VudGltZW50IGFzIG9yaWdpbmFsCgpgYGB7ciBFeHBsb3JlIHRoZSBkYXRhfQpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2VudGltZW50IEFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpXaGF0IHdlIGdldCBpcyBhIGxpc3Qgb2YgbiBhcnRpY2xlcyB3aXRoIGF0IGxlYXN0IG9uZSBvZiB0aGVtIGFzIHRoZSBvbmUgd2Ugd2FudCB0byBsYWJlbC4KV2l0aCB0aGlzIGxheWVyIHdlIHdhbnQgdmVyaWZ5IGlmIHRob3NlIGFydGljbGVzIGNvbnRhaW4gdGhlIHNhbWUgc3ViamVjdCBhbmQgY29udGVudC4KVGhpcyB3YXkgd2UgY2FuIGdlbmVyYXRlIG1vcmUgbGFiZWxzIGlmIHRoZXkgYXJlIHRoZSBzYW1lIGFuZCBmaWx0ZXIgYXJ0aWNsZXMgb3V0LgoKCkRhdGFzZXQ6CiAgUG9zaXRpb246CiAgU291cmNlIGdvb2dsZS9iaW5nOgogIERhdGUgb2YgcHViOgogIExpbms6CiAgVGl0bGU6CiAgQ29udGVudDoKICBMYWJlbGVkOgoKClByb2JsZW1zIHRvIHRhY2tsZTogCi0gTm8gbGFiZWxzIChvbmx5IHRoZSBvcmlnaW5hbCBvbmUpCi0gRGlmZmVyZW50IGZvcm1hdHMgPwoKRmlyc3QgYXBwcm9hY2ggcnVsZSBiYXNlZC4KLSBBY2N1cmFjeSB3aXRoIG9yaWdpbmFsIGNvbnRlbnQKLSBBY2N1cmFjeSB3aXRoIG9yaWdpbmFsIHRpdGxlCi0gU2FtZSBzZW50aW1lbnQgYXMgb3JpZ2luYWwKClJlcGVhdCB0aG9zZSBzdGVwcyB3aXRoIHRoZSBzdGVtbWluZywgdG9rZW5pemVkLCByZW1vdmUgc3RvcCB3b3JkcyBvZiBkYXRhc2V0LgoKRmluZCBhIGN1dG9mZi4KCmBgYHtyIEV4cGxvcmUgdGhlIGRhdGF9CmBgYAoKCg==</div>
 
 
 
