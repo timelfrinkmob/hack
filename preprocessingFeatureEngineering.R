@@ -122,12 +122,55 @@ create_wordcloud <- function(data) {
 
 
 create_wordcloud(allArticles$title)
+
+# Repeat for real and fake news seperately
 par(mfrow = c(2,1))
 create_wordcloud(allArticles$title[which(allArticles$label == "fake")])
 create_wordcloud(allArticles$title[which(allArticles$label == "real")])
 
 
-# Repeat for real and fake news seperately
+# Sentiment analyse: get corresponding sentiment for every word in title (normilized)
+library(tidytext)
+library(plyr)
+transform_text <- function(test){
+  # remove garbage from the bag of text
+  test <- VCorpus(VectorSource(test))
+  test <- tm_map(test, content_transformer(tolower))
+  test <- tm_map(test, removePunctuation)
+  test <- tm_map(test, removeNumbers)
+  test <- tm_map(test, stemDocument)
+  test <- tm_map(test, removeWords, stopwords("english"))
+  
+  dtm <- DocumentTermMatrix(test)
+  word_frame <- tidy(dtm)
+  colnames(word_frame)[2] <- "word"
+  
+  # get sentiments for the document matrix
+  positive_neg <- get_sentiments("nrc")
+  word_frame$word<-as.character(word_frame$word)
+  positive_neg$word<-as.character(positive_neg$word)
+  joined <-  dplyr::inner_join(word_frame, positive_neg, by="word")
+  
+  # count sentiment
+  joined <- joined %>% group_by(sentiment) %>% dplyr::summarise(total_sentiment= sum(count))
+  if(nrow(joined)==0){
+    joined[1,] = 0
+  }
+  joined <- spread(joined,sentiment,total_sentiment)
+  return(joined)
+}
 
-# Real 
+test <- head(allArticles,n=100)
 
+transformed <- c()
+
+
+for(item in test$title){
+  transformed <- dplyr::bind_rows(transformed,transform_text(item))
+}
+transformed[is.na(transformed)] <- 0
+transformed$`0` <- NULL
+
+transformed <- cbind(transformed,total = test$numberWordsTitle)
+transformed <- transformed %>% mutate(total_positive = trust + anticipation + positive + surprise + joy)
+transformed <- transformed %>% mutate(total_negative = negative + anger + fear + sadness + disgust)
