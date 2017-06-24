@@ -13,11 +13,9 @@ args <- args[!str_detect(string = args, pattern = "^-|^/Library")]
 stopifnot(length(args) == 2, file.exists(args))
 print(args)
 
-# arg1 <- "/Users/rubensikkes/sourcer/test.csv"
-# arg2 <- "/Users/rubensikkes/sourcer/compare.csv"
 
-arg1 <- "~/Desktop/ruben/test.csv"
-arg2 <- "~/Desktop/ruben/compare.csv"
+#arg1 <- "~/Desktop/ruben/test.csv"
+#arg2 <- "~/Desktop/ruben/compare.csv"
 
 arg1 <- args[1]
 arg2 <- args[2]
@@ -31,8 +29,8 @@ compare_text <- read.csv(arg2, header=T, sep="|", stringsAsFactors = F) %>% as.d
 
 
 
-original <- as.matrix(original_text$Title)
-articles <- as.matrix(compare_text$Title)
+original <- as.matrix(original_text$Content)
+articles <- as.matrix(compare_text$Content)
 
 docs <- rbind(original,articles)
 docs <- VCorpus(VectorSource(docs))
