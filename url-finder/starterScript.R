@@ -5,7 +5,7 @@ library(stringr)
 args <- commandArgs()
 args <- args[!str_detect(string = args, pattern = "^-|^/Library")]
 
-args <- "~/Documents/Mobiquity/Rest/FakeNews/url-finder/test_input"
+# args <- "~/Documents/Mobiquity/Rest/FakeNews/url-finder/test_input"
 
 stopifnot(length(args) == 1, file.exists(args))
 titles <- readLines(con = args)
