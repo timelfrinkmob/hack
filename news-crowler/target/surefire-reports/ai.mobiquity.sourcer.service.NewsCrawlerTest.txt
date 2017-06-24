@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ai.mobiquity.sourcer.service.NewsCrawlerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.816 sec - in ai.mobiquity.sourcer.service.NewsCrawlerTest
