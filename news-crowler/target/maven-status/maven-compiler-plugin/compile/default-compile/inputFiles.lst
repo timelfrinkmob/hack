@@ -1,5 +1,5 @@
-/Users/mustafadagher/storage/workspaces/training/sourcer/src/main/java/ai/mobiquity/sourcer/util/CsvUtils.java
-/Users/mustafadagher/storage/workspaces/training/sourcer/src/main/java/ai/mobiquity/sourcer/model/Article.java
-/Users/mustafadagher/storage/workspaces/training/sourcer/src/main/java/ai/mobiquity/sourcer/SourcerApplication.java
-/Users/mustafadagher/storage/workspaces/training/sourcer/src/main/java/ai/mobiquity/sourcer/exception/ExitException.java
-/Users/mustafadagher/storage/workspaces/training/sourcer/src/main/java/ai/mobiquity/sourcer/service/NewsCrawler.java
+/Users/mustafadagher/storage/workspaces/training/sourcer/news-crowler/src/main/java/ai/mobiquity/sourcer/service/NewsCrawler.java
+/Users/mustafadagher/storage/workspaces/training/sourcer/news-crowler/src/main/java/ai/mobiquity/sourcer/SourcerApplication.java
+/Users/mustafadagher/storage/workspaces/training/sourcer/news-crowler/src/main/java/ai/mobiquity/sourcer/exception/ExitException.java
+/Users/mustafadagher/storage/workspaces/training/sourcer/news-crowler/src/main/java/ai/mobiquity/sourcer/model/Article.java
+/Users/mustafadagher/storage/workspaces/training/sourcer/news-crowler/src/main/java/ai/mobiquity/sourcer/util/CsvUtils.java

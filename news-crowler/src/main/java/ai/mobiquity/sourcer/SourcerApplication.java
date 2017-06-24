@@ -27,6 +27,5 @@ public class SourcerApplication implements CommandLineRunner{
 
 		String filename = args[0];
 		newsCrawler.parseNewsBatchToCSV(filename);
-
 	}
 }
