@@ -7,11 +7,12 @@ java_command_base <- paste("java -jar", jar)
 cmd_args <- commandArgs()
 cmd_args <- cmd_args[!str_detect(string = cmd_args, pattern = "^-|^/Library")]
 
-cmd_args <- "full_script_test"
+cmd_args <- "urls"
 data <- readLines(cmd_args)
 
 #all rows are assumed to be URLs
 for(url in data){
+    cat("NEXT\n\n\n\n\n")
     file.create("tmp")
     write(x = url, file = "tmp")
     system(paste(java_command_base, "tmp"))
@@ -31,15 +32,16 @@ for(url in data){
     system(command = paste("Rscript sentiment_correlations.R", "tmp.csv", related_content_csv))
     sentiments <- read_csv("tmp_correlations")
 
-    path <- str_replace(url, pattern = ".+\\.[a-z]+/", replacement = "") %>% paste0("res_", .)
+    path <- str_replace(url, pattern = ".+\\.[a-z]+/", replacement = "") %>% paste0("res_", .) %>% str_replace(url, pattern = "/", replacement = "_")
     dir.create(path = path)
     file.copy(from = "tmp_correlations", to = paste0(path, "/", "related_correlations"))
     file.copy("tmp.csv", paste0(path, "/", "original_raw"))
     file.copy(related_content_csv, paste0(path, "/", "related_raw"))
 
     file.remove("tmp")
+    file.remove(related_links)
+    file.remove(paste0(related_links, ".csv"))
     file.remove("tmp.csv")
-    file.remove("tmpBarack_Obama_calls_Trumpcare_‘massive_transfer_of_wealth’_from_poor_to_rich_output")
     file.remove("tmp_correlations")
 }
 
