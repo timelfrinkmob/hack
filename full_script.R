@@ -25,6 +25,16 @@ for(url in data){
     system(paste(java_command_base, related_links))
 
     related_content_csv <- paste0(related_links, ".csv")
-    AKLJ <- read_delim(related_content_csv, "|", escape_double = FALSE, trim_ws = TRUE)
+    write.csv(x = content_csv, file = "tmp", sep = "|")
+    # related_content <- read_delim(related_content_csv, "|", escape_double = FALSE, trim_ws = TRUE)
+
+    system(command = paste("Rscript sentiment_correlations.R", "tmp.csv", related_content_csv))
+    sentiments <- read_csv("tmp_correlations")
+
+    path <- str_replace(url, pattern = ".+\\.[a-z]+/", replacement = "") %>% paste0("res_", .)
+    dir.create(path = path)
+    file.copy(from = "tmp_correlations", to = paste0(path, "/", "related_correlations"))
+    file.copy("tmp.csv", paste0(path, "/", "original_raw"))
+    file.copy(related_content_csv, paste0(path, "/", "related_raw"))
 }
 
