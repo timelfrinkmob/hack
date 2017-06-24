@@ -32,9 +32,9 @@ public class CsvUtils {
 
             for (News news : newsList) {
                 StringBuffer oneLine = new StringBuffer();
-                oneLine.append("\"" + news.getTitle() + "\"");
+                oneLine.append("\"" + news.getTitle().replace("\"","") + "\"");
                 oneLine.append(CSV_SEPARATOR);
-                oneLine.append("\"" + news.getContent() + "\"");
+                oneLine.append("\"" + news.getContent().replace("\"","") + "\"");
                 oneLine.append(CSV_SEPARATOR);
                 oneLine.append("\"" + news.getUrl() + "\"");
                 oneLine.append(CSV_SEPARATOR);
