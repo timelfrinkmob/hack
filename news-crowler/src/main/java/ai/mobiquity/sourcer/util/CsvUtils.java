@@ -10,41 +10,33 @@ import java.util.List;
  */
 public class CsvUtils {
 
-    private static int COUNT = 0;
-
     private static final String CSV_SEPARATOR = "|";
 
     public static void writeToCSV(String filename, List<News> newsList) {
         try {
-            COUNT++;
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename + ".csv"), "UTF-8"));
+            FileWriter fr = new FileWriter(filename + ".csv");
 
-            StringBuffer header = new StringBuffer();
-            header.append("Title");
-            header.append(CSV_SEPARATOR);
-            header.append("Content");
-            header.append(CSV_SEPARATOR);
-            header.append("URL");
-            header.append(CSV_SEPARATOR);
-            header.append("Date");
-            bw.write(header.toString());
-            bw.newLine();
+            StringBuilder header = new StringBuilder();
+            fr.append("Title").append(CSV_SEPARATOR).append("Content").append(CSV_SEPARATOR).append("URL").append(CSV_SEPARATOR).append("Date").append(System.lineSeparator());
 
             for (News news : newsList) {
-                StringBuffer oneLine = new StringBuffer();
-                oneLine.append("\"" + news.getTitle().replace("\"","") + "\"");
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append("\"" + news.getContent().replace("\"","") + "\"");
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append("\"" + news.getUrl() + "\"");
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append("\"" + news.getTime() + "\"");
-                bw.write(oneLine.toString());
-                bw.newLine();
+                String title = news.getTitle() != null ? news.getTitle().replace("\"", "") : "";
+                fr.append("\"" + title + "\"");
+                fr.append(CSV_SEPARATOR);
+
+                String content = news.getContent() != null ? news.getContent().replace("\"", "") : "";
+                fr.append("\"" + content + "\"");
+                fr.append(CSV_SEPARATOR);
+
+                fr.append("\"" + news.getUrl() + "\"");
+                fr.append(CSV_SEPARATOR);
+
+                fr.append("\"" + news.getTime() + "\"");
+                fr.append(System.lineSeparator());
             }
 
-            bw.flush();
-            bw.close();
+            fr.flush();
+            fr.close();
         } catch (UnsupportedEncodingException e) {
         } catch (FileNotFoundException e) {
         } catch (IOException e) {

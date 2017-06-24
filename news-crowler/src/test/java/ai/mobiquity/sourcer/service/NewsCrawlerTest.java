@@ -1,10 +1,14 @@
 package ai.mobiquity.sourcer.service;
 
+import ai.mobiquity.sourcer.util.CsvUtils;
 import cn.edu.hfut.dmic.contentextractor.News;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -50,8 +54,19 @@ public class NewsCrawlerTest {
         assertEquals("2016-10-26", news.getTime());
     }
 
+    @Ignore
     @Test
-    public void test_parseNewsBatchToCSV_success(){
+    public void test() {
+        // Given
+        String filename = "newtest";
+
+        // When
+        newsCrawler.parseNewsBatchToCSV(filename);
+
+    }
+
+    @Test
+    public void test_parseNewsBatchToCSV_success() {
         String urlBatch = "http://thehill.com/blogs/ballot-box/presidential-races/302849-black-lives-matter-leader-deray-mckesson-endorses-clinton\n" +
                 "http://www.cbsnews.com/news/black-lives-matter-leader-deray-mckesson-endorses-hillary-clinton/\n" +
                 "http://www.latimes.com/nation/politics/trailguide/la-na-trailguide-updates-black-lives-matter-activist-endorses-1477486400-htmlstory.html\n" +
@@ -65,5 +80,7 @@ public class NewsCrawlerTest {
 
         newsCrawler.parseNewsBatchToCSV(urlBatch);
     }
+
+
 
 }
