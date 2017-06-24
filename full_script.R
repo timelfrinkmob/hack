@@ -36,5 +36,10 @@ for(url in data){
     file.copy(from = "tmp_correlations", to = paste0(path, "/", "related_correlations"))
     file.copy("tmp.csv", paste0(path, "/", "original_raw"))
     file.copy(related_content_csv, paste0(path, "/", "related_raw"))
+
+    file.remove("tmp")
+    file.remove("tmp.csv")
+    file.remove("tmpBarack_Obama_calls_Trumpcare_‘massive_transfer_of_wealth’_from_poor_to_rich_output")
+    file.remove("tmp_correlations")
 }
 
