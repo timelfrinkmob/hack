@@ -17,7 +17,7 @@ public class CsvUtils {
     public static void writeToCSV(String filename, List<News> newsList) {
         try {
             COUNT++;
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename+ ".csv"), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename + ".csv"), "UTF-8"));
 
             StringBuffer header = new StringBuffer();
             header.append("Title");
@@ -32,13 +32,13 @@ public class CsvUtils {
 
             for (News news : newsList) {
                 StringBuffer oneLine = new StringBuffer();
-                oneLine.append(news.getTitle());
+                oneLine.append("\"" + news.getTitle() + "\"");
                 oneLine.append(CSV_SEPARATOR);
-                oneLine.append(news.getContent());
+                oneLine.append("\"" + news.getContent() + "\"");
                 oneLine.append(CSV_SEPARATOR);
-                oneLine.append(news.getUrl());
+                oneLine.append("\"" + news.getUrl() + "\"");
                 oneLine.append(CSV_SEPARATOR);
-                oneLine.append(news.getTime());
+                oneLine.append("\"" + news.getTime() + "\"");
                 bw.write(oneLine.toString());
                 bw.newLine();
             }
