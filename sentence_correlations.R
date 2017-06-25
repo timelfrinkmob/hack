@@ -14,8 +14,8 @@ stopifnot(length(args) == 2, file.exists(args))
 print(args)
 
 
-#arg1 <- "~/Desktop/ruben/test.csv"
-#arg2 <- "~/Desktop/ruben/compare.csv"
+arg1 <- "~/Desktop/original_raw"
+arg2 <- "~/Desktop/related_raw"
 
 arg1 <- args[1]
 arg2 <- args[2]
@@ -51,16 +51,13 @@ library(lsa)
 require(quanteda)
 cosine = c()
 cor = c()
-for(i in c(1:(ncol(tidy_dtm)-1))) {
-  cosine <- c(cosine,(lsa::cosine(as.vector(t(tidy_dtm[,2])),as.vector(t(tidy_dtm[,1+i])))))
-  cor <- c(cor,(cor(as.vector(t(tidy_dtm[,2])),as.vector(t(tidy_dtm[,1+i])))))
+for(i in c(2:(ncol(tidy_dtm)))) {
+  cosine <- c(cosine,(lsa::cosine(as.vector(t(tidy_dtm[,2])),as.vector(t(tidy_dtm[,i])))))
+  cor <- c(cor,(cor(as.vector(t(tidy_dtm[,2])),as.vector(t(tidy_dtm[,i])))))
 }
 
-tot <- cbind(cosine,cor)
-rownames(tot) <- c(1:nrow(tot))
-
-
+tot <- cbind(cosine,cor) %>% as.data.frame
 
 old_file_name <- str_replace_all(arg1, pattern = ".+/", replacement = "") %>% str_replace_all(pattern = "\\.[^\\.]+$", replacement = "")
 new_file_name <- paste(old_file_name, "_sentence_correlations")%>% str_replace_all(pattern = " ", replacement = "")
-write.csv(tot, file =new_file_name)
+readr::write_csv(x = tot, path = new_file_name)
