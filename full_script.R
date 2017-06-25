@@ -8,7 +8,7 @@ cmd_args <- commandArgs()
 cmd_args <- cmd_args[!str_detect(string = cmd_args, pattern = "^-|^/Library")]
 
 cmd_args <- "urls"
-data <- readLines(cmd_args) %>% .[5:length(.)]
+data <- readLines(cmd_args) %>% .[6:length(.)]
 
 #all rows are assumed to be URLs
 for(url in data){
@@ -25,7 +25,7 @@ for(url in data){
     system(paste(java_command_base, related_links))
 
     related_content_csv <- paste0(related_links, ".csv")
-    write.csv(x = content_csv, file = "tmp", sep = "|")
+    write_delim(x = content_csv, path = "tmp", sep = "|")
     # related_content <- read_delim(related_content_csv, "|", escape_double = FALSE, trim_ws = TRUE)
 
     # system(command = paste("Rscript sentiment_correlations.R", "tmp.csv", related_content_csv))
