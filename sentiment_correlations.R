@@ -12,17 +12,12 @@ args <- args[!str_detect(string = args, pattern = "^-|^/Library")]
 
 stopifnot(length(args) == 2, file.exists(args))
 
-# arg1 <- "/Users/rubensikkes/sourcer/test.csv"
-# arg2 <- "/Users/rubensikkes/sourcer/compare.csv"
-
 arg1 <- args[1]
 arg2 <- args[2]
 
-
 # 2 strings 2 csv files
-original_text <- read.csv("~/Desktop/original_raw", header=T, sep="|", stringsAsFactors = F) %>% as.data.frame()
-
-compare_text <- read.csv("~/Desktop/related_raw", header=T, sep="|", stringsAsFactors = F) %>% as.data.frame()
+original_text <- read.csv(arg1, header=T, sep="|", stringsAsFactors = F) %>% as.data.frame()
+compare_text <- read.csv(arg1, header=T, sep="|", stringsAsFactors = F) %>% as.data.frame()
 
 transform_text <- function(test){
   # remove garbage from the bag of text
@@ -83,11 +78,7 @@ transformed[is.na(transformed)] <- 0
 similarity_results <- similarities(transformed)
 res <- apply(similarity_results, 1 , mean)
 similarity_results$sentiment_avg <- res
-# similarity_results <- similarity_results[-1,]
-library(tidyr)
-# similarity_results <- similarity_results %>% drop_na()
-rownames(similarity_results) <- c(1:nrow(similarity_results))
 
 old_file_name <- str_replace_all(arg1, pattern = ".+/", replacement = "") %>% str_replace_all(pattern = "\\.[^\\.]+$", replacement = "")
-new_file_name <- paste(old_file_name, "_correlations")%>% str_replace_all(pattern = " ", replacement = "")
+new_file_name <- paste(old_file_name, "_sentiment_correlations")%>% str_replace_all(pattern = " ", replacement = "")
 readr::write_csv(x = similarity_results, path = new_file_name)

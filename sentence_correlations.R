@@ -11,15 +11,9 @@ args <- commandArgs()
 args <- args[!str_detect(string = args, pattern = "^-|^/Library")]
 
 stopifnot(length(args) == 2, file.exists(args))
-print(args)
-
-
-arg1 <- "~/Desktop/original_raw"
-arg2 <- "~/Desktop/related_raw"
 
 arg1 <- args[1]
 arg2 <- args[2]
-
 
 # 2 strings 2 csv files
 original_text <- read.csv(arg1, header=T, sep="|", stringsAsFactors = F) %>% as.data.frame()
