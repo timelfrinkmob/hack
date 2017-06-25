@@ -84,6 +84,8 @@ similarity_results <- similarities(transformed)
 res <- apply(similarity_results, 1 , mean)
 similarity_results$sentiment_avg <- res
 # similarity_results <- similarity_results[-1,]
+library(tidyr)
+similarity_results <- similarity_results %>% drop_na()
 rownames(similarity_results) <- c(1:nrow(similarity_results))
 
 old_file_name <- str_replace_all(arg1, pattern = ".+/", replacement = "") %>% str_replace_all(pattern = "\\.[^\\.]+$", replacement = "")
