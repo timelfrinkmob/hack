@@ -82,7 +82,6 @@ library("SnowballC")
 library("wordcloud")
 library("RColorBrewer")
 
-
 create_wordcloud <- function(data) {
   # Load the data as a corpus
   docs <- Corpus(VectorSource(data))
@@ -120,18 +119,18 @@ create_wordcloud <- function(data) {
   
 }
 
-
 create_wordcloud(allArticles$title)
 
 # Repeat for real and fake news seperately
-par(mfrow = c(2,1))
+#par(mfrow = c(2,1))
 create_wordcloud(allArticles$title[which(allArticles$label == "fake")])
 create_wordcloud(allArticles$title[which(allArticles$label == "real")])
-
 
 # Sentiment analyse: get corresponding sentiment for every word in title (normilized)
 library(tidytext)
 library(plyr)
+library(dplyr)
+library(tidyr)
 transform_text <- function(test){
   # remove garbage from the bag of text
   test <- VCorpus(VectorSource(test))
@@ -160,17 +159,20 @@ transform_text <- function(test){
   return(joined)
 }
 
-test <- head(allArticles,n=100)
+#test <- head(allArticles,n=100)
 
 transformed <- c()
 
-
-for(item in test$title){
+for(item in allArticles$title){
   transformed <- dplyr::bind_rows(transformed,transform_text(item))
 }
 transformed[is.na(transformed)] <- 0
 transformed$`0` <- NULL
 
-transformed <- cbind(transformed,total = test$numberWordsTitle)
+transformed <- cbind(transformed,total = allArticles$numberWordsTitle)
 transformed <- transformed %>% mutate(total_positive = trust + anticipation + positive + surprise + joy)
 transformed <- transformed %>% mutate(total_negative = negative + anger + fear + sadness + disgust)
+
+allArticles <- cbind(allArticles, transformed)
+
+save(allArticles, file="models/allArticles.RData")

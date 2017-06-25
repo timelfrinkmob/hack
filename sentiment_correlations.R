@@ -11,7 +11,6 @@ args <- commandArgs()
 args <- args[!str_detect(string = args, pattern = "^-|^/Library")]
 
 stopifnot(length(args) == 2, file.exists(args))
-print(args)
 
 # arg1 <- "/Users/rubensikkes/sourcer/test.csv"
 # arg2 <- "/Users/rubensikkes/sourcer/compare.csv"
@@ -40,6 +39,8 @@ transform_text <- function(test){
 
   # get sentiments for the document matrix
   positive_neg <- get_sentiments("nrc")
+  word_frame$word<-as.character(word_frame$word)
+  positive_neg$word<-as.character(positive_neg$word)
   joined <- inner_join(word_frame, positive_neg, by="word")
 
   # count sentiment
@@ -82,6 +83,7 @@ transformed[is.na(transformed)] <- 0
 similarity_results <- similarities(transformed)
 res <- apply(similarity_results, 1 , mean)
 similarity_results$sentiment_avg <- res
+# similarity_results <- similarity_results[-1,]
 rownames(similarity_results) <- c(1:nrow(similarity_results))
 
 old_file_name <- str_replace_all(arg1, pattern = ".+/", replacement = "") %>% str_replace_all(pattern = "\\.[^\\.]+$", replacement = "")
