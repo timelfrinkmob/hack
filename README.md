@@ -12,8 +12,14 @@ With our solution, the users will receive advice about their news content. Based
 
 ## Credits
 This repository is made by:
+
 https://github.com/mustafadagher
+
 https://github.com/Jeroentjeh
+
 https://github.com/alihassouni
+
 https://github.com/RubenSikkes
+
 https://github.com/timelfrinkmob
+
