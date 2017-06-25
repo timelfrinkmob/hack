@@ -13,7 +13,7 @@ folder <- str_replace(string = args, pattern = "/[^/]+$",replacement = "/")
 
 getGoogleLinks <- function(google.url) {
     doc <- getURL(google.url, httpheader = c("User-Agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"))
-    Sys.sleep(2+rnorm(1,0,2))
+    Sys.sleep(5+rnorm(1,0,4) + runif(min = 0, max = 2, n = 1))
     html <- htmlTreeParse(doc, useInternalNodes = TRUE, error=function
                           (...){})
     nodes <- getNodeSet(html, "//h3[@class='r']//a")
